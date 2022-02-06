@@ -45,4 +45,13 @@ void remove_list_entry(entry)
 }
 ```
 
+He argues that the important part isn't the details of the code—although details are also important,
+but that by looking at the code in a different way it can be greately improved.
+
+Taste isn't something that can be taught: either you have it, or you don't. And it takes somebody
+with good taste (like Linus Torvalds), to recognize another person with good taste. However, by
+immersing yourself with examples of good taste, eventually you'll absorb that style.
+
+Here we'll dive into this illustration, and why it is considered good taste.
+
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
