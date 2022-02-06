@@ -2,7 +2,7 @@ In a [TED talk][ted] in 2016, Linus Torvalds is asked to explain his notion of "
 illustration he showcases code as is typically taught in universities:
 
 ```c
-remove_list_entry(entry)
+void remove_list_entry(entry)
 {
 	prev = NULL;
 	walk = head;
@@ -27,7 +27,7 @@ remove_list_entry(entry)
 In contrast, he provides an alternative that he considers superior:
 
 ```c
-remove_list_entry(entry)
+void remove_list_entry(entry)
 {
 	// The "indirect" pointer points to the
 	// *address* of the thing we'll update
@@ -40,7 +40,7 @@ remove_list_entry(entry)
 	while ((*indirect) != entry)
 		indirect = &(*indirect)->next;
 
-	// .. and just remove it
+	// ... and just remove it
 	*indirect = entry->next;
 }
 ```
