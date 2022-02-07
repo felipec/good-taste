@@ -2,10 +2,12 @@ In a [TED talk][ted] in 2016, Linus Torvalds is asked to explain his notion of "
 illustration he showcases code as is typically taught in universities:
 
 ```c
-void remove_list_entry(entry)
+void remove_list_entry(node **head, node *entry)
 {
+	node *prev, *walk;
+
 	prev = NULL;
-	walk = head;
+	walk = *head;
 
 	// Walk the list
 
@@ -18,7 +20,7 @@ void remove_list_entry(entry)
 	// head or the previous entry
 
 	if (!prev)
-		head = entry->next;
+		*head = entry->next;
 	else
 		prev->next = entry->next;
 }
@@ -27,12 +29,14 @@ void remove_list_entry(entry)
 In contrast, he provides an alternative that he considers superior:
 
 ```c
-void remove_list_entry(entry)
+void remove_list_entry(node **head, node *entry)
 {
+	node **indirect;
+
 	// The "indirect" pointer points to the
 	// *address* of the thing we'll update
 
-	indirect = &head;
+	indirect = head;
 
 	// Walk the list, looking for the thing that
 	// points to the entry we want to remove
