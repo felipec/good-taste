@@ -58,4 +58,36 @@ immersing yourself with examples of good taste, eventually you'll absorb that st
 
 Here we'll dive into this illustration, and why it is considered good taste.
 
+## Linked list
+
+Anyone who has studied computer science in university at some point was asked to create a linked
+list, which is one of the most basic data structures.
+
+The core of a linked linked list is a `node`, which is a structure consisting of two fileds: a
+value, and a pointer to the next node.
+
+<p align="center"><canvas id="node"></canvas></p>
+
+```c
+struct node {
+	int value;
+	struct node *next;
+};
+```
+
+A linked list is nothing more than a sequence of nodes:
+
+<p align="center"><canvas id="list"></canvas></p>
+
+`head` points to the first node, and the last node's `next` pointer doesn't point to anything
+(`NULL`).
+
+So to get the second node's value (`1`), we could do this:
+
+```c
+head->next->value;
+```
+
+<script src="index.js"></script>
+
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
