@@ -1,4 +1,4 @@
-In a [TED talk][ted] in 2016, Linus Torvalds is asked to explain his notion of "taste". As an
+In a [TED talk][ted] in 2016, Linus Torvalds was asked to explain his notion of "taste". As an
 illustration he showcases code as is typically taught in universities:
 
 ```c
