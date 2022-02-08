@@ -315,6 +315,19 @@ are no corner cases.
 
 <canvas id="improved"></canvas>
 
+## Conclusion
+
+As we've seen from this illustration, to a developer with good taste ™, it's not enough for the
+code to compile and run correctly, by simply employing a little bit of thought, the code can be
+improved to the point where the best developers in the world could consider "good".
+
+However, as Linus Torvalds pointed out: this is nothing. This is a very trivial illustration of the
+kind of pushback you would receive from good taste developers to perfectly correct code. Real
+examples look very different from this.
+
+For starters, in the real world not all linked lists contain a single `int` field, so what would a
+**real** linked list look like? For the answer check part 2 (pending).
+
 <script src="index.js"></script>
 
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
