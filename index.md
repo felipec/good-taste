@@ -140,6 +140,49 @@ there's many other considerations: efficiency, readability, maintainability, sty
 
 Let's consider more.
 
+## Refactoring code
+
+The first step in refactoring code is ensuring the code keeps working in the same way as before, so
+we need to write tests.
+
+Let's write a very simple unit test:
+
+```c
+int do_test(void)
+{
+	node *head;
+	node a = { .value = 0 };
+	node b = { .value = 1 };
+	node c = { .value = 2 };
+
+	head = &a;
+	a.next = &b;
+	b.next = &c;
+
+	remove_list_entry(&head, &b);
+	if (a.next != &c) return false;
+
+	remove_list_entry(&head, &a);
+	if (head != &c) return false;
+
+	return true;
+}
+```
+
+In this test we check both cases: removing an element in the middle of the list, and removing the
+first element.
+
+We check that the code runs correctly:
+
+```c
+printf("result: %s\n", do_test() ? "OK" : "FAIL");
+=> result: OK
+```
+
+... and it does.
+
+Now we are ready to improve the code.
+
 <script src="index.js"></script>
 
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
