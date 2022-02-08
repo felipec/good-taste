@@ -87,6 +87,16 @@ function draw_null(x, y) {
   draw_text('NULL', x, y, w, h);
 }
 
+function draw_pointer(name, color, x, y, w) {
+  const h = node_size.h;
+
+  fill_rect(color, x, y, w, h);
+  ctx.strokeRect(x, y, w, h);
+  draw_text(name, x, y, w, h);
+
+  draw_arrow(x + w / 2, y, x + w / 2, y - space);
+}
+
 function init(width, height) {
   ctx.canvas.width = width;
   ctx.canvas.height = height;
@@ -110,6 +120,20 @@ function draw() {
   draw_node(2 + 2 * node_box.w, 2, '1');
   draw_node(2 + 3 * node_box.w, 2, '2');
   draw_null(2 + 4 * node_box.w, 2);
+
+  ctx = document.getElementById('traditional').getContext('2d');
+
+  init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
+
+  draw_head(2, 2);
+  draw_node(2 + 1 * node_box.w, 2, '0');
+  draw_node(2 + 2 * node_box.w, 2, '1');
+  draw_node(2 + 3 * node_box.w, 2, '2');
+  draw_null(2 + 4 * node_box.w, 2);
+
+  draw_pointer('prev', blue, 2 + 1 * node_box.w, 2 + node_size.h + space, node_size.w);
+  draw_pointer('entry', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
+
 }
 
 draw();

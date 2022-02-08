@@ -88,6 +88,58 @@ So to get the second node's value (`1`), we could do this:
 head->next->value;
 ```
 
+## Traditional code
+
+To remove an element we need to make the previous element point to the next element, effectively
+skipping the element we want to remove. Since we don't have a pointer to the previous element, we
+need to traverse the list until we find the element we want to remove, and the previous element will
+be the last element traversed.
+
+So, a naive implementation would be like:
+
+```c
+walk = *head;
+
+// Walk the list
+
+while (walk != entry) {
+	prev = walk;
+	walk = walk->next;
+}
+
+// Remove the entry by updating the previous entry
+
+prev->next = entry->next;
+```
+
+<canvas id="traditional"></canvas>
+
+The moment `walk` is equal to `entry` we have found the node we want to remove, therefore `prev` is
+the previous node.
+
+All we have to do is update the previous node's `next` ponter to the current node's `next` pointer
+(`0` points to `2`).
+
+The problem is that when `entry` is the very first node, there is no `prev`, so this program would
+either produce undefined behavior or crash.
+
+To fix this all we have to do is add a check to deal with the corner case:
+
+```c
+if (!prev)
+	*head = entry->next;
+else
+	prev->next = entry->next;
+```
+
+Now the code works properly (if you initialize `prev` to `NULL`), and that's where most programmers
+would call it a day. "It compiles, ship it!"
+
+But good programmers wouldn't stop there. It's not enough that the code compiles and runs correctly,
+there's many other considerations: efficiency, readability, maintainability, style, etc.
+
+Let's consider more.
+
 <script src="index.js"></script>
 
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
