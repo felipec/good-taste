@@ -5,3 +5,12 @@
 @import "rouge-felipec";
 
 div.highlighter-rouge, div.highlight { background-color: initial; }
+
+code {
+  background-color: hsla(210, 25%, 50%, 0.25);
+  box-shadow: none;
+}
+
+pre code {
+  background-color: transparent;
+}
