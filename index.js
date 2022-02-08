@@ -5,6 +5,7 @@ const font_size = 20;
 
 const blue = 'hsl(240, 75%, 75%)';
 const red = 'hsl(0, 75%, 75%)';
+const green = 'hsl(120, 75%, 75%)';
 
 function draw_arrow(x0, y0, x1, y1) {
   const head_size = 5;
@@ -134,6 +135,17 @@ function draw() {
   draw_pointer('prev', blue, 2 + 1 * node_box.w, 2 + node_size.h + space, node_size.w);
   draw_pointer('entry', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
 
+  ctx = document.getElementById('improved').getContext('2d');
+
+  init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
+
+  draw_head(2, 2);
+  draw_node(2 + 1 * node_box.w, 2, '0');
+  draw_node(2 + 2 * node_box.w, 2, '1');
+  draw_node(2 + 3 * node_box.w, 2, '2');
+  draw_null(2 + 4 * node_box.w, 2);
+
+  draw_pointer('p', green, 2 + node_box.w + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
 }
 
 draw();

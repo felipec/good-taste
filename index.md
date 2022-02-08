@@ -183,6 +183,138 @@ printf("result: %s\n", do_test() ? "OK" : "FAIL");
 
 Now we are ready to improve the code.
 
+## Improving code
+
+Walking the list isn't something we can get rid of, but perhaps there's something we can do about
+the last check:
+
+```c
+if (!prev)
+	*head = entry->next;
+else
+	prev->next = entry->next;
+```
+
+In both cases the right-hand side is the same: `entry->next`, so an easy refactoring could be:
+
+```c
+node **tmp;
+if (!prev)
+	tmp = head;
+else
+	tmp = &prev->next;
+*tmp = entry->next;
+```
+
+This code does **exactly** the same as the original, because in the first branch `*tmp` is the same as
+`*head`, and in the second branch `*tmp` is `prev->next`.
+
+If we run the test we can verify that's indeed the case.
+
+Now, we know the only time `prev` is going to be `NULL` is when `entry` is the first node, and
+therefore the `while` cycle is never run, so we can initialize `tmp` at the same time we initialize
+`prev` (at the start):
+
+```c
+prev = NULL;
+tmp = head;
+walk = *head;
+```
+
+Now `tmp` only needs to be updated when `prev` has not been updated (not `NULL`):
+
+```c
+if (prev) tmp = &prev->next;
+```
+
+But if we are going to update `tmp` only when `prev` is updated, perhaps we can update both at the
+same time:
+
+```c
+while (walk != entry) {
+	prev = walk;
+	tmp = &prev->next;
+	walk = walk->next;
+}
+```
+
+At this point the resulting code is:
+
+```c
+node *prev, *walk, **tmp;
+
+prev = NULL;
+tmp = head;
+walk = *head;
+
+while (walk != entry) {
+	prev = walk;
+	tmp = &prev->next;
+	walk = walk->next;
+}
+
+*tmp = entry->next;
+```
+
+Turns out that `prev` isn't used at all any more, so let's get rid of it:
+
+```c
+node *walk, **tmp;
+
+tmp = head;
+walk = *head;
+
+while (walk != entry) {
+	tmp = &walk->next;
+	walk = walk->next;
+}
+
+*tmp = entry->next;
+```
+
+The test still passes, so we are are doing OK.
+
+Next, it's very obvious that `tmp` and `walk` are very similar, in fact `tmp` is simply the address
+of `walk`, and `walk` is only used to check if we've reached the target `entry`, and we can use
+`*tmp` instead:
+
+```c
+node **tmp;
+
+tmp = head;
+
+while ((*tmp) != entry) {
+	tmp = &(*tmp)->next;
+}
+
+*tmp = entry->next;
+```
+
+We've reached the exact same code Linus Torvalds considered to be "good taste", all we have to do is
+change the name of `tmp` which is an indirect pointer to the pointer we want to update.
+
+And we can simplify the code even more:
+
+```c
+node **p = head;
+while (*p != entry)
+	p = &(*p)->next;
+*p = entry->next;
+```
+
+This already drives the point home, but that's not all we can do:
+
+```c
+node **p;
+for (p = head; *p != entry; p = &(*p)->next);
+*p = entry->next;
+```
+
+All we had to do is consider a pointer to a pointer, and now the code is only two lines and there
+are no corner cases.
+
+<canvas id="improved"></canvas>
+
 <script src="index.js"></script>
 
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
