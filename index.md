@@ -66,7 +66,7 @@ list, which is one of the most basic data structures.
 The core of a linked linked list is a `node`, which is a structure consisting of two fileds: a
 value, and a pointer to the next node.
 
-<p align="center"><canvas id="node"></canvas></p>
+<canvas id="node"></canvas>
 
 ```c
 struct node {
@@ -77,7 +77,7 @@ struct node {
 
 A linked list is nothing more than a sequence of nodes:
 
-<p align="center"><canvas id="list"></canvas></p>
+<canvas id="list"></canvas>
 
 `head` points to the first node, and the last node's `next` pointer doesn't point to anything
 (`NULL`).
