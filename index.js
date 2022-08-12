@@ -133,7 +133,7 @@ function draw() {
   draw_null(2 + 4 * node_box.w, 2);
 
   draw_pointer('prev', blue, 2 + 1 * node_box.w, 2 + node_size.h + space, node_size.w);
-  draw_pointer('entry', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
+  draw_pointer('walk', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
 
   ctx = document.getElementById('improved').getContext('2d');
 
