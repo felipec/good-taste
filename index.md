@@ -64,7 +64,7 @@ Anyone who has studied computer science in university at some point was asked to
 list, which is one of the most basic data structures.
 
 The core of a linked linked list is a `node`, which is a structure consisting of two fileds: a
-value, and a pointer to the next node.
+value and a pointer to the next node.
 
 <canvas id="node"></canvas>
 
@@ -195,7 +195,8 @@ else
 	prev->next = entry->next;
 ```
 
-In both cases the right-hand side is the same: `entry->next`, so an easy refactoring could be:
+In both cases the right-hand side of the assignment is the same: `entry->next`, so an easy
+refactoring could be storing the left-hand side which variable, in a variable:
 
 ```c
 node **tmp;
@@ -275,8 +276,8 @@ while (walk != entry) {
 The test still passes, so we are are doing OK.
 
 Next, it's very obvious that `tmp` and `walk` are very similar, in fact `tmp` is simply the address
-of `walk`, and `walk` is only used to check if we've reached the target `entry`, and we can use
-`*tmp` instead:
+of `walk`, and `walk` is only used to check if we've reached the target `entry`. So we can use
+`*tmp` instead of `walk`:
 
 ```c
 node **tmp;
@@ -317,8 +318,8 @@ are no corner cases.
 
 ## Conclusion
 
-As we've seen from this illustration, to a developer with good taste ™, it's not enough for the
-code to compile and run correctly, by simply employing a little bit of thought, the code can be
+As we've seen from this illustration, to a developer with good taste ™ it's not enough for the
+code to compile and run correctly, by simply employing a little bit of thought the code can be
 improved to the point where the best developers in the world could consider "good".
 
 However, as Linus Torvalds pointed out: this is nothing. This is a very trivial illustration of the
