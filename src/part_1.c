@@ -101,12 +101,20 @@ int do_test(remove_list_entry fn)
 	return true;
 }
 
+remove_list_entry list[] = {
+	remove_list_entry_0,
+	remove_list_entry_1,
+	remove_list_entry_2,
+	remove_list_entry_3,
+	remove_list_entry_4,
+	NULL,
+};
+
 int main(void)
 {
-	printf("0: result: %s\n", do_test(remove_list_entry_0) ? "OK" : "FAIL");
-	printf("1: result: %s\n", do_test(remove_list_entry_1) ? "OK" : "FAIL");
-	printf("2: result: %s\n", do_test(remove_list_entry_2) ? "OK" : "FAIL");
-	printf("3: result: %s\n", do_test(remove_list_entry_3) ? "OK" : "FAIL");
-	printf("4: result: %s\n", do_test(remove_list_entry_4) ? "OK" : "FAIL");
+	for (int i = 0; list[i]; i++) {
+		int r = do_test(list[i]);
+		printf("%i: %s\n", i, r ? "OK" : "FAIL");
+	}
 	return 0;
 }
