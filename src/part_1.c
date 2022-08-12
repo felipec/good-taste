@@ -112,9 +112,11 @@ remove_list_entry list[] = {
 
 int main(void)
 {
+	int ret = 0;
 	for (int i = 0; list[i]; i++) {
 		int r = do_test(list[i]);
 		printf("%i: %s\n", i, r ? "OK" : "FAIL");
+		ret |= !r;
 	}
-	return 0;
+	return ret;
 }
