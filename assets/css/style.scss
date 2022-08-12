@@ -6,6 +6,9 @@
 
 div.highlighter-rouge, div.highlight { background-color: initial; }
 
+div.highlight { margin: 1em 0; }
+pre.highlight { padding: 0; }
+
 code {
   background-color: hsla(210, 25%, 50%, 0.25);
   box-shadow: none;
@@ -13,9 +16,11 @@ code {
 
 pre code {
   background-color: transparent;
+  padding: 1em;
 }
 
 canvas {
   display: block;
   margin: 1em auto;
+  padding: 1em;
 }
