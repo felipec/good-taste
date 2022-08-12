@@ -35,15 +35,10 @@ into this:
 ```c
 void remove_list_entry(node **head, node *entry)
 {
-	node **tmp;
-
-	tmp = head;
-
-	while ((*tmp) != entry) {
-		tmp = &(*tmp)->next;
-	}
-
-	*tmp = entry->next;
+	node **p = head;
+	while (*p != entry)
+		p = &(*p)->next;
+	*p = entry->next;
 }
 ```
 
