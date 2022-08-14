@@ -107,45 +107,53 @@ function init(width, height) {
 }
 
 function draw() {
-  ctx = document.getElementById('node').getContext('2d');
+  ctx = document.getElementById('node')?.getContext('2d');
 
-  init(4 + node_box.w, 4 + node_box.h);
-  draw_node(2, 2, '0');
+  if (ctx) {
+    init(4 + node_box.w, 4 + node_box.h);
+    draw_node(2, 2, '0');
+  }
 
-  ctx = document.getElementById('list').getContext('2d');
+  ctx = document.getElementById('list')?.getContext('2d');
 
-  init(4 + 4 * node_box.w + node_size.w, 4 + node_box.h);
+  if (ctx) {
+    init(4 + 4 * node_box.w + node_size.w, 4 + node_box.h);
 
-  draw_head(2, 2);
-  draw_node(2 + 1 * node_box.w, 2, '0');
-  draw_node(2 + 2 * node_box.w, 2, '1');
-  draw_node(2 + 3 * node_box.w, 2, '2');
-  draw_null(2 + 4 * node_box.w, 2);
+    draw_head(2, 2);
+    draw_node(2 + 1 * node_box.w, 2, '0');
+    draw_node(2 + 2 * node_box.w, 2, '1');
+    draw_node(2 + 3 * node_box.w, 2, '2');
+    draw_null(2 + 4 * node_box.w, 2);
+  }
 
-  ctx = document.getElementById('traditional').getContext('2d');
+  ctx = document.getElementById('traditional')?.getContext('2d');
 
-  init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
+  if (ctx) {
+    init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
 
-  draw_head(2, 2);
-  draw_node(2 + 1 * node_box.w, 2, '0');
-  draw_node(2 + 2 * node_box.w, 2, '1');
-  draw_node(2 + 3 * node_box.w, 2, '2');
-  draw_null(2 + 4 * node_box.w, 2);
+    draw_head(2, 2);
+    draw_node(2 + 1 * node_box.w, 2, '0');
+    draw_node(2 + 2 * node_box.w, 2, '1');
+    draw_node(2 + 3 * node_box.w, 2, '2');
+    draw_null(2 + 4 * node_box.w, 2);
 
-  draw_pointer('prev', blue, 2 + 1 * node_box.w, 2 + node_size.h + space, node_size.w);
-  draw_pointer('walk', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
+    draw_pointer('prev', blue, 2 + 1 * node_box.w, 2 + node_size.h + space, node_size.w);
+    draw_pointer('walk', blue, 2 + 2 * node_box.w, 2 + node_size.h + space, node_size.w);
+  }
 
-  ctx = document.getElementById('improved').getContext('2d');
+  ctx = document.getElementById('improved')?.getContext('2d');
 
-  init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
+  if (ctx) {
+    init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
 
-  draw_head(2, 2);
-  draw_node(2 + 1 * node_box.w, 2, '0');
-  draw_node(2 + 2 * node_box.w, 2, '1');
-  draw_node(2 + 3 * node_box.w, 2, '2');
-  draw_null(2 + 4 * node_box.w, 2);
+    draw_head(2, 2);
+    draw_node(2 + 1 * node_box.w, 2, '0');
+    draw_node(2 + 2 * node_box.w, 2, '1');
+    draw_node(2 + 3 * node_box.w, 2, '2');
+    draw_null(2 + 4 * node_box.w, 2);
 
-  draw_pointer('p', green, 2 + node_box.w + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
+    draw_pointer('p', green, 2 + node_box.w + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
+  }
 }
 
 draw();
