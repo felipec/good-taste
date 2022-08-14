@@ -154,6 +154,20 @@ function draw() {
 
     draw_pointer('p', green, 2 + node_box.w + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
   }
+
+  ctx = document.getElementById('linux')?.getContext('2d');
+
+  if (ctx) {
+    init(4 + 4 * node_box.w + node_size.w, 4 + 2 * node_box.h + space);
+
+    draw_node(2 + 0 * node_box.w, 2, 'h');
+    draw_node(2 + 1 * node_box.w, 2, '0');
+    draw_node(2 + 2 * node_box.w, 2, '1');
+    draw_node(2 + 3 * node_box.w, 2, '2');
+    draw_null(2 + 4 * node_box.w, 2);
+
+    draw_pointer('p', blue, 2 + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
+  }
 }
 
 draw();
