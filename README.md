@@ -44,8 +44,43 @@ void remove_list_entry(node **head, node *entry)
 
 in [part 1].
 
-Part 2 and 3 are pending.
+We then explore how a real library (GLib) does it and improve it to:
+
+```c
+GSList *g_slist_remove_link(GSList *list, GSList *link)
+{
+	GSList **p = &list;
+
+	while (*p && *p != link)
+		p = &(*p)->next;
+
+	if (*p) *p = (*p)->next;
+
+	return list;
+}
+```
+
+in [part 2].
+
+And finally we explore how Linux does it, and arrive to:
+
+```c
+void llist_del(struct llist_head *list, struct llist_node *entry)
+{
+	struct llist_node *p;
+
+	llist_for_each(p, (struct llist_node *)list) {
+		if (p->next != entry) continue;
+		p->next = entry->next;
+		return;
+	}
+}
+```
+
+in [part 3] which is vastly superior, and in good taste.
 
 [linked-list-good-taste]: https://github.com/mkirchner/linked-list-good-taste
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
-[part 1]: https://felipec.github.io/good-taste/
+[part 1]: https://felipec.github.io/good-taste/parts/1.html
+[part 2]: https://felipec.github.io/good-taste/parts/2.html
+[part 3]: https://felipec.github.io/good-taste/parts/3.html
