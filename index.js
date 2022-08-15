@@ -1,17 +1,18 @@
 const pr = window.devicePixelRatio;
-const space = (40 / pr) | 0;
-const node_size = { w: (80 / pr) | 0, h: (40 / pr) | 0 };
+const scale = Math.min(pr * (document.body.clientWidth - 14 * 4) / 564, pr);
+const space = (40 * scale) | 0;
+const node_size = { w: (80 * scale) | 0, h: (40 * scale) | 0 };
 const node_box = { w: node_size.w + space, h: node_size.h };
-const font_size = (20 / pr) | 0;
+const font_size = (20 * scale) | 0;
 
 const blue = 'hsl(240, 75%, 75%)';
 const red = 'hsl(0, 75%, 75%)';
 const green = 'hsl(120, 75%, 75%)';
 
 function draw_arrow(x0, y0, x1, y1) {
-  const head_size = (5 / pr) | 0;
+  const head_size = (5 * scale) | 0;
   const head_angle = Math.PI / 6;
-  const width = (4 / pr) | 0;
+  const width = (4 * scale) | 0;
 
   const angle = Math.atan2(y1 - y0, x1 - x0);
 
@@ -100,10 +101,13 @@ function draw_pointer(name, color, x, y, w) {
 }
 
 function init(width, height) {
+  ctx.canvas.style.width = `${width / pr | 0}px`;
+  ctx.canvas.style.height = `${height / pr | 0}px`;
+
   ctx.canvas.width = width;
   ctx.canvas.height = height;
 
-  ctx.lineWidth = (4 / pr) | 0;
+  ctx.lineWidth = (4 * scale) | 0;
   ctx.lineJoin = 'round';
 }
 
