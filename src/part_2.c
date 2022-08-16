@@ -69,6 +69,19 @@ GSList *g_slist_remove_link_3(GSList *list, GSList *link)
 	return list;
 }
 
+GSList *g_slist_remove_link_4(GSList *list, GSList *link)
+{
+	GSList **p;
+
+	for (p = &list; *p; p = &(*p)->next) {
+		if (*p != link) continue;
+		*p = (*p)->next;
+		break;
+	}
+
+	return list;
+}
+
 typedef GSList *(*g_slist_remove_link)(GSList *list, GSList *link);
 
 int do_test(g_slist_remove_link fn) {
@@ -110,6 +123,7 @@ g_slist_remove_link list[] = {
 	// g_slist_remove_link_1,
 	g_slist_remove_link_2,
 	g_slist_remove_link_3,
+	g_slist_remove_link_4,
 	NULL,
 };
 
