@@ -171,7 +171,7 @@ function draw() {
     draw_node(2 + 3 * node_box.w, 2, '2');
     draw_null(2 + 4 * node_box.w, 2);
 
-    draw_pointer('p', blue, 2 + node_size.w / 2, 2 + node_size.h + space, node_size.w / 2);
+    draw_pointer('p', blue, 2 + node_size.w / 4, 2 + node_size.h + space, node_size.w / 2);
   }
 }
 
