@@ -3,7 +3,7 @@ linked list example inspired by Mark Kirchner's project
 [linked-list-good-taste], which in turn was inspired by a comment Linus
 Torvalds made in his [TED talk][ted] in 2016.
 
-We start by turning this typical implementation:
+In [part 1] we start by turning this typical implementation:
 
 ```c
 void remove_list_entry(node **head, node *entry)
@@ -42,9 +42,7 @@ void remove_list_entry(node **head, node *entry)
 }
 ```
 
-in [part 1].
-
-We then explore how a real library (GLib) does it and improve it to:
+In [part 2] we then explore how a real library (GLib) does it and improve it to:
 
 ```c
 GSList *g_slist_remove_link(GSList *list, GSList *link)
@@ -64,9 +62,7 @@ GSList *g_slist_remove_link(GSList *list, GSList *link)
 }
 ```
 
-in [part 2].
-
-And finally we explore how Linux does it, and arrive to:
+And finally in [part 3] we explore how Linux does it, and arrive to:
 
 ```c
 void llist_del(struct llist_head *list, struct llist_node *entry)
@@ -81,7 +77,7 @@ void llist_del(struct llist_head *list, struct llist_node *entry)
 }
 ```
 
-in [part 3] which is vastly superior, and in good taste.
+Which is vastly superior, and in good taste.
 
 [linked-list-good-taste]: https://github.com/mkirchner/linked-list-good-taste
 [ted]: https://youtu.be/o8NPllzkFhE?t=858
