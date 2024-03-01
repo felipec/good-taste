@@ -51,10 +51,14 @@ GSList *g_slist_remove_link(GSList *list, GSList *link)
 {
 	GSList **p = &list;
 
-	while (*p && *p != link)
-		p = &(*p)->next;
+	while (*p) {
+		if (*p == link) {
+			*p = (*p)->next;
+			break;
+		}
 
-	if (*p) *p = (*p)->next;
+		p = &(*p)->next;
+	}
 
 	return list;
 }
