@@ -153,6 +153,9 @@ p img {
 }
 
 pre, code {
+  color: #222;
+  background-color: #fff;
+
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 0.875em;
 
@@ -162,6 +165,12 @@ pre, code {
 }
 
 div.highlight {
+  background-color: unset;
+}
+
+/* restore theme's colors */
+pre.highlight code {
+  color: unset;
   background-color: unset;
 }
 
