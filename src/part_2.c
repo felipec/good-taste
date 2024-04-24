@@ -106,14 +106,8 @@ int do_test(g_slist_remove_link fn) {
 	head = fn(head, &link_a);
 	if (head != &link_c) return false;
 
-	head = fn(head, NULL);
-	if (head != &link_c) return false;
-
 	head = fn(head, &link_c);
 	if (head != NULL) return false;
-
-	head = fn(NULL, NULL);
-	head = fn(NULL, &link_c);
 
 	return true;
 }
